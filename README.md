@@ -22,3 +22,11 @@ ER diagram And Relationship between each entity:
 - Studied access token vs refresh token concepts
 - Defined token-based authentication flow for client requests
 
+## Day 3
+- Implemented Spring Security `UserDetailsService` to authenticate users from the database
+- Integrated `CustomUserDetails` as the security adapter for role-based authorization
+- Designed refresh token mechanism for session continuity
+- Implemented refresh token creation, validation, and expiry handling
+- Used Spring Data `CrudRepository` for user and token persistence
+- Strengthened understanding of authentication flow and token lifecycle
+
