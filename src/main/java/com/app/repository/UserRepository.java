@@ -7,5 +7,9 @@ import com.app.entity.UserDetails;
 
 @Repository
 public interface UserRepository extends CrudRepository<UserDetails, String> {
-	public UserDetails  findByUsername(String username);
+	UserDetails findByUsername(String username);
+
+    boolean existsByUsername(String username);
+
+    boolean existsByEmail(String email);
 }

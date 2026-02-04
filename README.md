@@ -4,7 +4,7 @@ Project Description:
 This project focuses on building the backend of an Expense Tracker application using Spring Boot.
 
 
-#Day 1:
+## Day 1:
 - Project initialization
 - Designing the entity layer
 - Defining relationships between entities
@@ -29,4 +29,65 @@ ER diagram And Relationship between each entity:
 - Implemented refresh token creation, validation, and expiry handling
 - Used Spring Data `CrudRepository` for user and token persistence
 - Strengthened understanding of authentication flow and token lifecycle
+
+## Day 4
+- Designed request and response DTOs for authentication flow
+- DTOs define what data is allowed to cross the API boundary.
+- Integrated DTOs into signup, login, and token refresh workflows
+
+
+### Classes Explained:
+
+### Entity Classes
+
+- **UserDetails**
+    Represents a user record in the database, storing login credentials and profile identifiers.
+
+- **UserRole**
+    Defines authorization roles assigned to users for access control.
+
+- **RefreshToken**
+    Stores long-lived refresh tokens used to generate new access tokens without re-authentication.
+
+
+### Repository Classes
+
+- **UserRepository**
+    Provides database operations to fetch and persist user records using Spring Data.
+
+- **RefreshTokenRepository**
+    Manages CRUD operations for refresh tokens and token lookup.
+
+
+### Service Classes
+
+- **UserDetailsServiceImplementation**
+    Loads user data from the database and adapts it to Spring Security’s authentication model.
+
+- **CustomUserDetails**
+    Converts the user entity into a security-safe representation required by Spring Security.
+
+- **JwtService**
+    Handles JWT creation, validation, and claim extraction for stateless authentication.
+
+- **RefreshTokenService**
+    Creates, validates, and expires refresh tokens for session continuity.
+
+
+### DTO Classes
+
+- **AuthRequestDto**  
+    Carries username and password from the client during login requests.
+
+- **UserDetailsDto**  
+    Transfers user registration and profile data during signup without exposing entity internals.
+
+- **JwtResponseDto**  
+    Sends access token and refresh token to the client after successful authentication.
+
+- **RefreshTokenRequestDto**  
+    Carries refresh token from client to request a new access token.
+
+
+
 

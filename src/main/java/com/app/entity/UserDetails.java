@@ -21,7 +21,10 @@ public class UserDetails {
 
     @Column(nullable = false)
     private String password;
-
+    
+    @Column(nullable = false, unique = true)
+    private String email;
+    
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "user_roles",
