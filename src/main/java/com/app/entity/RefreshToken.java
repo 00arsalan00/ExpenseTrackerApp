@@ -1,4 +1,4 @@
-package entity;
+package com.app.entity;
 
 import java.time.Instant;
 
