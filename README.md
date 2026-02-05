@@ -35,6 +35,13 @@ ER diagram And Relationship between each entity:
 - DTOs define what data is allowed to cross the API boundary.
 - Integrated DTOs into signup, login, and token refresh workflows
 
+## Day 5
+- Implemented JWT-based authentication filter
+- Configured Spring Security with stateless session management
+- Integrated custom JwtAuthFilter into the security filter chain
+- Wired AuthenticationManager and AuthenticationProvider for login flow
+- Defined public and protected API endpoints
+
 
 ### Classes Explained:
 
@@ -89,5 +96,16 @@ ER diagram And Relationship between each entity:
     Carries refresh token from client to request a new access token.
 
 
+### Auth Classes
+
+- **JwtConfig**
+    Validates token of each request
+
+- **UserConfig**
+    Declares PasswordEncoder and its Algo
+
+- **SecurityConfig**
+    Defines Security rulebook, checks which requests are public and which need authentication.
+    How Authentication should happen and which filter should run in what order.
 
 
