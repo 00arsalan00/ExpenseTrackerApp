@@ -42,6 +42,9 @@ ER diagram And Relationship between each entity:
 - Wired AuthenticationManager and AuthenticationProvider for login flow
 - Defined public and protected API endpoints
 
+## Day 6
+- Implemented /signup and /login mapping
+- Implemented how Access token will be generated using Refresh Token
 
 ### Classes Explained:
 
@@ -108,4 +111,11 @@ ER diagram And Relationship between each entity:
     Defines Security rulebook, checks which requests are public and which need authentication.
     How Authentication should happen and which filter should run in what order.
 
+
+### Controller Classes
+- **AuthController**
+    This class implements /signup and /login request: creates user, authenticate user, generate access token(jwt), generate refresh token and return both.
+
+- **TokenController**
+    This class generates new access token from refresh token.
 

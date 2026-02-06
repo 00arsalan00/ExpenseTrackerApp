@@ -21,10 +21,14 @@ public class RefreshTokenService {
 
         UserDetails user = userRepository.findByUsername(username);
 
+        if (user == null) {
+            throw new RuntimeException("User not found");
+        }
+
         RefreshToken refreshToken = RefreshToken.builder()
                 .userDetails(user)
                 .token(UUID.randomUUID().toString())
-                .expiryDate(Instant.now().plusSeconds(60 * 60 * 24)) 
+                .expiryDate(Instant.now().plusSeconds(60 * 60 * 24))
                 .build();
 
         return refreshTokenRepository.save(refreshToken);
