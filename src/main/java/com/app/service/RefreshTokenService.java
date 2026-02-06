@@ -1,12 +1,17 @@
 package com.app.service;
 
 import java.time.Instant;
-import java.util.*;
+import java.util.Optional;
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.app.entity.*;
-import com.app.repository.*;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.app.entity.RefreshToken;
+import com.app.entity.UserDetails;
+import com.app.repository.RefreshTokenRepository;
+import com.app.repository.UserRepository;
 
 @Service
 public class RefreshTokenService {
@@ -17,13 +22,17 @@ public class RefreshTokenService {
     @Autowired
     private UserRepository userRepository;
 
+    @Transactional
     public RefreshToken createRefreshToken(String username) {
 
         UserDetails user = userRepository.findByUsername(username);
 
         if (user == null) {
-            throw new RuntimeException("User not found");
+            throw new RuntimeException("User not found: " + username);
         }
+
+        refreshTokenRepository.deleteByUser(user);
+        refreshTokenRepository.flush();
 
         RefreshToken refreshToken = RefreshToken.builder()
                 .userDetails(user)
@@ -43,10 +52,16 @@ public class RefreshTokenService {
         if (token.getExpiryDate().isBefore(Instant.now())) {
             refreshTokenRepository.delete(token);
             throw new RuntimeException(
-                    token.getToken() + " Refresh token expired. Please login again."
+                    "Refresh token expired. Please login again."
             );
         }
 
         return token;
+    }
+
+    @Transactional
+    public void deleteByUser(UserDetails user) {
+        refreshTokenRepository.deleteByUser(user);
+        refreshTokenRepository.flush();
     }
 }

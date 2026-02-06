@@ -4,8 +4,6 @@ import java.time.Instant;
 
 import jakarta.persistence.*;
 import lombok.*;
-import com.fasterxml.jackson.databind.PropertyNamingStrategies;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 @Entity
 @Getter
@@ -13,7 +11,6 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 @Table(name = "tokens")
 public class RefreshToken {
 

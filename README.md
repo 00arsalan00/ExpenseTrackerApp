@@ -46,6 +46,21 @@ ER diagram And Relationship between each entity:
 - Implemented /signup and /login mapping
 - Implemented how Access token will be generated using Refresh Token
 
+## Testing and Bug Fixing
+- Tested all 3 apis.
+- A critical issue was identified in the authentication flow.
+- During **signup**, a refresh token was generated and stored in the database along with the user ID.
+- On **login**, the system attempted to generate and persist another refresh token for the same user.
+- Since the `tokens` table enforces a **one-to-one relationship** between user and refresh token (unique `user_id`), this resulted in a **duplicate key constraint violation**.
+- The root cause was improper refresh token lifecycle management.
+- Enforced a **single active refresh token per user**.
+- On login (and signup), any existing refresh token for the user is deleted before creating a new one.
+- This ensures token rotation instead of duplication and aligns with standard security practices.
+- Signup and login flows now work correctly.
+- No duplicate token collisions occur.
+- Authentication is stable and production-ready.
+
+
 ### Classes Explained:
 
 ### Entity Classes
