@@ -46,6 +46,12 @@ ER diagram And Relationship between each entity:
 - Implemented /signup and /login mapping
 - Implemented how Access token will be generated using Refresh Token
 
+## Day 7
+- Starting of Implementation of Expense Tracker App Logic
+- Implemented Expense entity and ExpenseRepository
+- Enums are used to create fixed Expense type and category
+- Do not use FindById alone because this returns expense regardless of owner which can lead to data leaks.
+
 ## Testing and Bug Fixing
 - Tested all 3 apis.
 - A critical issue was identified in the authentication flow.
@@ -74,6 +80,9 @@ ER diagram And Relationship between each entity:
 - **RefreshToken**
     Stores long-lived refresh tokens used to generate new access tokens without re-authentication.
 
+- **Expense**
+    Defing what is Expense and what type of Expense.
+
 
 ### Repository Classes
 
@@ -83,6 +92,8 @@ ER diagram And Relationship between each entity:
 - **RefreshTokenRepository**
     Manages CRUD operations for refresh tokens and token lookup.
 
+- **ExpenseRepository**
+    Tracking user expense using: UserId+Id, UserId, UserId+FromDate+ToDate, UserId+ExpenseCategory
 
 ### Service Classes
 
@@ -134,3 +145,5 @@ ER diagram And Relationship between each entity:
 - **TokenController**
     This class generates new access token from refresh token.
 
+### Domain Enums
+- An enum is a closed, finite set of valid values defined at compile time. These are the only values that can ever exist.
