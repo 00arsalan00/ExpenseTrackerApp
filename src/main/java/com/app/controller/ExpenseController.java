@@ -31,7 +31,7 @@ public class ExpenseController {
             @Valid @RequestBody ExpenseCreateRequestDto request,
             Authentication authentication
     ) {
-        Long userId = Long.parseLong(authentication.getName());
+    	String userId = authentication.getName();
         ExpenseResponseDto response = expenseService.createExpense(userId, request);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
@@ -41,7 +41,7 @@ public class ExpenseController {
             @PathVariable Long id,
             Authentication authentication
     ) {
-        Long userId = Long.parseLong(authentication.getName());
+    	String userId = authentication.getName();
         return ResponseEntity.ok(
                 expenseService.getExpenseById(userId, id)
         );
@@ -60,7 +60,7 @@ public class ExpenseController {
             Pageable pageable,
             Authentication authentication
     ) {
-        Long userId = Long.parseLong(authentication.getName());
+    	String userId = authentication.getName();
         return expenseService.getAllExpenses(userId, from, to, pageable);
     }
 
@@ -70,7 +70,7 @@ public class ExpenseController {
             @PathVariable Long id,
             Authentication authentication
     ) {
-        Long userId = Long.parseLong(authentication.getName());
+        String userId = authentication.getName();
         expenseService.deleteExpense(userId, id);
     }
 }

@@ -56,7 +56,7 @@ ER diagram And Relationship between each entity:
 - Implementing ExpenseService and ExpenseController
 - PostMapping -> CreateExpense, GetMappng -> getExpenseById, GetMappng -> getAllExpenses, DeleteMapping -> deleteExpenses.
 
-## Testing and Bug Fixing
+## Testing and Bug Fixing 1
 - Tested all 3 apis.
 - A critical issue was identified in the authentication flow.
 - During **signup**, a refresh token was generated and stored in the database along with the user ID.
@@ -70,6 +70,10 @@ ER diagram And Relationship between each entity:
 - No duplicate token collisions occur.
 - Authentication is stable and production-ready.
 
+## Testing and Bug Fixing 1
+- Tested all 3 apis.
+- Critical issue was in last two dasy work I have taken userId as Long but earlier it was defined as String.
+- All apis are correctly inserting,retrieving and deleting data.
 
 ### Classes Explained:
 

@@ -7,12 +7,12 @@ import com.app.response.ExpenseResponseDto;
 
 public interface ExpenseService {
 	
-	ExpenseResponseDto createExpense(Long userId,ExpenseCreateRequestDto expenseCreate);
+	ExpenseResponseDto createExpense(String userId,ExpenseCreateRequestDto expenseCreate);
 	
-	ExpenseResponseDto getExpenseById(Long userId,Long expenseId);
+	ExpenseResponseDto getExpenseById(String userId,Long expenseId);
 	
-	Page<ExpenseResponseDto> getAllExpenses(Long userId,LocalDate from,LocalDate to,Pageable pageable);
+	Page<ExpenseResponseDto> getAllExpenses(String userId,LocalDate from,LocalDate to,Pageable pageable);
 	
-	void deleteExpense(Long userId,Long expenseId);
+	void deleteExpense(String userId,Long expenseId);
 
 }

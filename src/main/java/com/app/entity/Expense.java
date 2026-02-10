@@ -23,7 +23,8 @@ public class Expense {
     private Long id;
 
     @Column(name = "user_id", nullable = false, updatable = false)
-    private Long userId;
+    private String userId;
+
 
     @Column(nullable = false, precision = 12, scale = 2)
     private BigDecimal amount;
@@ -59,7 +60,7 @@ public class Expense {
         this.updatedAt = OffsetDateTime.now();
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         if (this.userId != null) {
             throw new IllegalStateException("userId cannot be changed");
         }

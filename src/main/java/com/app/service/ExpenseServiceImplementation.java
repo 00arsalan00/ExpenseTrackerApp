@@ -23,7 +23,7 @@ public class ExpenseServiceImplementation implements ExpenseService {
 	private final ExpenseRepository expenseRepository;
 	
 	@Override
-	public ExpenseResponseDto createExpense(Long userId,ExpenseCreateRequestDto request) {
+	public ExpenseResponseDto createExpense(String userId,ExpenseCreateRequestDto request) {
 		
 		Expense expense = new Expense();
 		expense.setUserId(userId);
@@ -40,7 +40,7 @@ public class ExpenseServiceImplementation implements ExpenseService {
 	}
 	
 	@Override
-	public ExpenseResponseDto getExpenseById(Long userId,Long expenseId) {
+	public ExpenseResponseDto getExpenseById(String userId,Long expenseId) {
 		Expense expense = expenseRepository.findByIdAndUserId(expenseId, userId).orElseThrow(
 				() -> new EntityNotFoundException("Expense Not Found")
 				);
@@ -48,7 +48,7 @@ public class ExpenseServiceImplementation implements ExpenseService {
 	}
 	
 	@Override
-	public Page<ExpenseResponseDto> getAllExpenses(Long userId,LocalDate from,LocalDate to,Pageable pageable){
+	public Page<ExpenseResponseDto> getAllExpenses(String userId,LocalDate from,LocalDate to,Pageable pageable){
 		
 		if(from!=null && to!=null) {
 			return expenseRepository.findAllByUserIdAndExpenseDateBetween(userId, from, to, pageable)
@@ -60,7 +60,7 @@ public class ExpenseServiceImplementation implements ExpenseService {
 	}
 	
 	@Override
-	public void deleteExpense(Long userId,Long expenseId) {
+	public void deleteExpense(String userId,Long expenseId) {
 		Expense expense = expenseRepository.findByIdAndUserId(expenseId, userId)
 				.orElseThrow(()-> new EntityNotFoundException("Expense Not Found"));
 		expenseRepository.delete(expense);
