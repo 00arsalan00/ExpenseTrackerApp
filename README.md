@@ -52,9 +52,15 @@ ER diagram And Relationship between each entity:
 - Enums are used to create fixed Expense type and category
 - Do not use FindById alone because this returns expense regardless of owner which can lead to data leaks.
 
+
 ## Day 8
 - Implementing ExpenseService and ExpenseController
 - PostMapping -> CreateExpense, GetMappng -> getExpenseById, GetMappng -> getAllExpenses, DeleteMapping -> deleteExpenses.
+
+
+## Day 9
+- Implemented Update feature. ExpenseUpdateRequestDto,ExpenseUpdateService,ExpenseUpdateServiceImplementation,ExpenseController.
+- PutMapping-> updateExpenses
 
 ## Testing and Bug Fixing 1
 - Tested all 3 apis.
@@ -70,7 +76,7 @@ ER diagram And Relationship between each entity:
 - No duplicate token collisions occur.
 - Authentication is stable and production-ready.
 
-## Testing and Bug Fixing 1
+## Testing and Bug Fixing 2
 - Tested all 3 apis.
 - Critical issue was in last two dasy work I have taken userId as Long but earlier it was defined as String.
 - All apis are correctly inserting,retrieving and deleting data.
@@ -123,6 +129,12 @@ ER diagram And Relationship between each entity:
 - **ExpenseServiceImplementation**
     Contains the actual business logic that fulfills the service contract and coordinates repositories and domain rules.
 
+- **ExpenseUpdateService**
+    Defines the contract for updating an expense while enforcing business rules.
+
+- **ExpenseUpdateServiceImplementation**
+    Implements controlled mutation of an existing expense after verifying ownership.
+
 
 ### DTO Classes
 
@@ -143,6 +155,9 @@ ER diagram And Relationship between each entity:
 
 - **ExpenseResponseDto**
     Represents the structured, read-only data returned to the client after processing an expense operation.
+
+- **ExpenseUpdateRequestDto**
+    Carries and validates client input data for updating an existing expense.
 
 
 ### Auth Classes

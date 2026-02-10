@@ -12,8 +12,10 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import com.app.request.ExpenseCreateRequestDto;
+import com.app.request.ExpenseUpdateRequestDto;
 import com.app.response.ExpenseResponseDto;
 import com.app.service.ExpenseService;
+import com.app.service.ExpenseUpdateService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +27,7 @@ import lombok.RequiredArgsConstructor;
 public class ExpenseController {
 
     private final ExpenseService expenseService;
+    private final ExpenseUpdateService expenseUpdateService;
 
     @PostMapping
     public ResponseEntity<ExpenseResponseDto> createExpense(
@@ -62,6 +65,20 @@ public class ExpenseController {
     ) {
     	String userId = authentication.getName();
         return expenseService.getAllExpenses(userId, from, to, pageable);
+    }
+    
+    @PutMapping("/{id}")
+    public ResponseEntity<ExpenseResponseDto> updateExpenses(
+    		@PathVariable Long id,
+    		@Valid @RequestBody ExpenseUpdateRequestDto request,
+    		Authentication authentication
+    		){
+    	
+    	String userId = authentication.getName();
+    	
+    	ExpenseResponseDto response = expenseUpdateService.updateExpenses(userId, id, request);
+    	
+    	return ResponseEntity.ok(response);
     }
 
     @DeleteMapping("/{id}")
