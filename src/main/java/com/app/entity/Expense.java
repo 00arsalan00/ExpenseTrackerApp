@@ -5,8 +5,11 @@ import java.time.*;
 import com.app.domain.ExpenseType;
 import com.app.domain.ExpenseCategory;
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
+@Getter
+@NoArgsConstructor
 @Table(
     name = "expenses",
     indexes = {
@@ -62,4 +65,26 @@ public class Expense {
         }
         this.userId = userId;
     }
+    
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public void setCategory(ExpenseCategory category) {
+        this.category = category;
+    }
+
+    public void setType(ExpenseType type) {
+        this.type = type;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setExpenseDate(LocalDate expenseDate) {
+        this.expenseDate = expenseDate;
+    }
+
+	
 }

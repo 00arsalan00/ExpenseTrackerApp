@@ -52,6 +52,10 @@ ER diagram And Relationship between each entity:
 - Enums are used to create fixed Expense type and category
 - Do not use FindById alone because this returns expense regardless of owner which can lead to data leaks.
 
+## Day 8
+- Implementing ExpenseService and ExpenseController
+- PostMapping -> CreateExpense, GetMappng -> getExpenseById, GetMappng -> getAllExpenses, DeleteMapping -> deleteExpenses.
+
 ## Testing and Bug Fixing
 - Tested all 3 apis.
 - A critical issue was identified in the authentication flow.
@@ -109,6 +113,12 @@ ER diagram And Relationship between each entity:
 - **RefreshTokenService**
     Creates, validates, and expires refresh tokens for session continuity.
 
+- **ExpenseService**
+    Defines the business contract for expense operations, decoupling controllers from implementation details.
+
+- **ExpenseServiceImplementation**
+    Contains the actual business logic that fulfills the service contract and coordinates repositories and domain rules.
+
 
 ### DTO Classes
 
@@ -123,6 +133,12 @@ ER diagram And Relationship between each entity:
 
 - **RefreshTokenRequestDto**  
     Carries refresh token from client to request a new access token.
+
+- **ExpenseCreateRequestDto**
+    Represents and validates client input data used to create a new expense, protecting the domain from invalid requests.
+
+- **ExpenseResponseDto**
+    Represents the structured, read-only data returned to the client after processing an expense operation.
 
 
 ### Auth Classes
@@ -144,6 +160,9 @@ ER diagram And Relationship between each entity:
 
 - **TokenController**
     This class generates new access token from refresh token.
+
+- **ExpenseController**
+    Exposes REST APIs, validates requests, extracts user context, and delegates all business work to the service layer.
 
 ### Domain Enums
 - An enum is a closed, finite set of valid values defined at compile time. These are the only values that can ever exist.
