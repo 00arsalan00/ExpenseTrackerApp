@@ -62,6 +62,14 @@ ER diagram And Relationship between each entity:
 - Implemented Update feature. ExpenseUpdateRequestDto,ExpenseUpdateService,ExpenseUpdateServiceImplementation,ExpenseController.
 - PutMapping-> updateExpenses
 
+## Day 10
+- Implemented Global Exception Handler
+- HandleValidationException-> Bad Request, HandleEntityNotFound-> Not Found, HandleGenericException -> Internal Server Error
+- @ControllerAdvice: Globally intercepts exceptions thrown by controllers and routes them to appropriate handler methods.
+- @ExceptionHandler: Maps a specific exception type to a method that converts it into an HTTP response.
+- getBindingResult(): Retrieves detailed field-level validation errors generated during request binding.
+- 
+
 ## Testing and Bug Fixing 1
 - Tested all 3 apis.
 - A critical issue was identified in the authentication flow.
@@ -185,3 +193,10 @@ ER diagram And Relationship between each entity:
 
 ### Domain Enums
 - An enum is a closed, finite set of valid values defined at compile time. These are the only values that can ever exist.
+
+### Exception classes
+- **EntityNotFoundException**
+    Thrown when a requested database entity does not exist.
+
+- **ApiErrorResponse**
+    Standardizes the structure of error responses returned to the client.
