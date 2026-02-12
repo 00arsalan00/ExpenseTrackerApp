@@ -68,7 +68,14 @@ ER diagram And Relationship between each entity:
 - @ControllerAdvice: Globally intercepts exceptions thrown by controllers and routes them to appropriate handler methods.
 - @ExceptionHandler: Maps a specific exception type to a method that converts it into an HTTP response.
 - getBindingResult(): Retrieves detailed field-level validation errors generated during request binding.
-- 
+
+
+## Day 11
+- Adding Expense Tracker Feature.
+- Using can now analyzie thier monthly,date wise,categorywise expenses. Can check now much daily avg spending and also top category in which most money is spend.
+- Implemented CategoryReportDto, DashboardDto, ExpenseSummaryDto, MonthlyReportDto.
+- Implemented ReportService do define logic Expense tracking.
+
 
 ## Testing and Bug Fixing 1
 - Tested all 3 apis.
@@ -143,6 +150,9 @@ ER diagram And Relationship between each entity:
 - **ExpenseUpdateServiceImplementation**
     Implements controlled mutation of an existing expense after verifying ownership.
 
+- **ReportService**
+    Implements logic of how to calculate, summarize and generate report on expense.
+
 
 ### DTO Classes
 
@@ -167,6 +177,17 @@ ER diagram And Relationship between each entity:
 - **ExpenseUpdateRequestDto**
     Carries and validates client input data for updating an existing expense.
 
+- **CategoryReportDto**
+    Represents, Tracks and validates Category wise Expenses.
+
+- **DashboardDto**
+    Geneartes Dashboard for all expense tracking feature.
+
+- **ExpenseSummaryDto**
+    Summarizes Total expense.
+
+- **MonthlyReportDto**
+    Represents, Tracks and validates Month wise Expenses
 
 ### Auth Classes
 
