@@ -1,10 +1,10 @@
 package com.app.entity;
-
 import java.math.BigDecimal;
 import java.time.*;
 import com.app.domain.ExpenseType;
 import com.app.domain.ExpenseCategory;
 import jakarta.persistence.*;
+
 import lombok.*;
 
 @Entity
@@ -24,7 +24,6 @@ public class Expense {
 
     @Column(name = "user_id", nullable = false, updatable = false)
     private String userId;
-
 
     @Column(nullable = false, precision = 12, scale = 2)
     private BigDecimal amount;
@@ -66,7 +65,7 @@ public class Expense {
         }
         this.userId = userId;
     }
-    
+
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
@@ -86,6 +85,4 @@ public class Expense {
     public void setExpenseDate(LocalDate expenseDate) {
         this.expenseDate = expenseDate;
     }
-
-	
 }
