@@ -76,6 +76,9 @@ ER diagram And Relationship between each entity:
 - Implemented CategoryReportDto, DashboardDto, ExpenseSummaryDto, MonthlyReportDto.
 - Implemented ReportService do define logic Expense tracking.
 
+## Day 12
+- Implementing Api end points to integerate tracking and reporting feature.
+- Implemented ReportController class with GetMapping-> monthly,category,dashboard
 
 ## Testing and Bug Fixing 1
 - Tested all 3 apis.
@@ -95,6 +98,11 @@ ER diagram And Relationship between each entity:
 - Tested all 3 apis.
 - Critical issue was in last two dasy work I have taken userId as Long but earlier it was defined as String.
 - All apis are correctly inserting,retrieving and deleting data.
+
+## Testing and Bug Fixing 3
+- Tested all 3 apis.
+- There was issue in Query of MonthlyExpenses. We were using expense_date (full date) with year and month. Sql strictness has blocked us. we only have to make year(expense_date) and month(expense_date) only year and month of date with year and month in group by.
+- All apis are correctly fetching and calculating data.
 
 ### Classes Explained:
 
