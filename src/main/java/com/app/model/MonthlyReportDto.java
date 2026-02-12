@@ -7,8 +7,8 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class MonthlyReportDto {
-	
-	private String month;
-	private BigDecimal totalAmount;
-	
+    private Integer year;
+    private Integer month;
+    private BigDecimal totalAmount;
 }
+
