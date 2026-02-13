@@ -5,7 +5,9 @@ import java.time.LocalDate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.validation.annotation.Validated;
@@ -50,7 +52,7 @@ public class ExpenseController {
         );
     }
 
-    @GetMapping
+    @GetMapping("/range")
     public Page<ExpenseResponseDto> getAllExpenses(
             @RequestParam(required = false)
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
@@ -65,6 +67,31 @@ public class ExpenseController {
     ) {
     	String userId = authentication.getName();
         return expenseService.getAllExpenses(userId, from, to, pageable);
+    }
+    
+    @GetMapping("/export")
+    public ResponseEntity<byte[]> exportExpenses(
+            @RequestParam(required = false)
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+            LocalDate from,
+
+            @RequestParam(required = false)
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+            LocalDate to,
+            
+            Authentication authentication
+    		){
+    	
+    	String userId = authentication.getName();
+    	
+    	byte[] csvData = expenseService.exportToCsv(userId, from, to);
+    	
+    	return ResponseEntity.ok()
+    	        .header(HttpHeaders.CONTENT_DISPOSITION,
+    	                "attachment; filename=expenses.csv")
+    	        .contentType(MediaType.parseMediaType("text/csv"))
+    	        .body(csvData);
+    	
     }
     
     @PutMapping("/{id}")

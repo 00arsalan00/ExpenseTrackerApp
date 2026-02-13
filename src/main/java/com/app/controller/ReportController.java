@@ -51,16 +51,5 @@ public class ReportController {
         );   
     }
     
-    @GetMapping("/range")
-    public ResponseEntity<?> getRangeReport(
-    		@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate start,
-    		@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate end,
-    		Authentication authentication){
-    	
-    	String userId = authentication.getName();
-    	
-    	return ResponseEntity.ok(
-    			reportService.getExpensesByRange(start, end, userId)
-    			);
-    }
+    
 }

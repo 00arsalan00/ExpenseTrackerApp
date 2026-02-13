@@ -11,11 +11,8 @@ import org.springframework.stereotype.Service;
 
 import com.app.domain.ExpenseCategory;
 import com.app.entity.Expense;
-import com.app.exception.InvalidDateRangeException;
 import com.app.model.*;
 import com.app.repository.ExpenseRepository;
-import com.app.response.ExpenseResponseDto;
-
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -73,31 +70,6 @@ public class ReportService {
 		        RoundingMode.HALF_UP
 		);
 
-	}
-	
-	public List<ExpenseResponseDto> getExpensesByRange(LocalDate start,LocalDate end,String userId) {
-
-	    if (start.isAfter(end)) {
-	        throw new InvalidDateRangeException();
-	    }
-
-	    return expenseRepository
-	            .getExpensesByRange(start, end, userId)
-	            .stream()
-	            .map(this::convertToDto)
-	            .toList();
-	}
-	
-	private ExpenseResponseDto convertToDto(Expense expense) {
-	    return new ExpenseResponseDto(
-	            expense.getId(),
-	            expense.getAmount(),
-	            expense.getCategory(),
-	            expense.getType(),
-	            expense.getExpenseDate(),
-	            expense.getDescription(),
-	            expense.getCreatedAt()
-	    );
 	}
 
 

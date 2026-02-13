@@ -81,11 +81,16 @@ ER diagram And Relationship between each entity:
 - Implemented ReportController class with GetMapping-> monthly,category,dashboard
 
 ## Day 13
-- Implementing Feature of Extracting Expense Between Date ranges.
-- Modified ExpenseRepository to add this feature.
-- Defined logic in ReportService to extract expense based date range.
-- Defined Api End point in ReportController 
+- Optimizing getAllExpenses() feature by integerating it with InvalidDateRangeException.
 - Implemented InvalidDateRangeException class to handle if start date is after the end date and GolbalExceptionHandler handles Invalid Date Range.
+
+## Day 14
+- Implementing CSV Export feature. Now User can download their expenses as CSV. 
+- Reusing findAllByUserIdAndExpenseDateBetween(...).
+- Changed some getAllExpense endPoints.
+- We fetch the user’s expenses from the database, write them into a CSV format in memory using a StringWriter and CSVPrinter, convert that to a byte array, and return it in the HTTP response with download headers.
+- We are using the Apache Commons CSV dependency:
+org.apache.commons:commons-csv to generate and format the CSV file safely.
 
 ## Testing and Bug Fixing 1
 - Tested all 3 apis.

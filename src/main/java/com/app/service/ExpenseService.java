@@ -13,6 +13,8 @@ public interface ExpenseService {
 	
 	Page<ExpenseResponseDto> getAllExpenses(String userId,LocalDate from,LocalDate to,Pageable pageable);
 	
+	public byte[] exportToCsv(String userId,LocalDate from,LocalDate to);
+	
 	void deleteExpense(String userId,Long expenseId);
 
 }
