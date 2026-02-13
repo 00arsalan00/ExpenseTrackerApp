@@ -102,7 +102,7 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
     		SELECT e FROM Expense e
     		WHERE e.expenseDate BETWEEN :start AND :end
     		AND e.userId = :userId
-    		ORDER BY e.date DESC
+    		ORDER BY e.expenseDate DESC
     		""")
     List<Expense> getExpensesByRange(@Param("start") LocalDate start,
     		@Param("end") LocalDate end,@Param("userId") String userId);

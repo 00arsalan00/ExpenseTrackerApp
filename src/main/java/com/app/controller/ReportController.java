@@ -51,7 +51,7 @@ public class ReportController {
         );   
     }
     
-    @GetMapping("/reports/range")
+    @GetMapping("/range")
     public ResponseEntity<?> getRangeReport(
     		@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate start,
     		@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate end,

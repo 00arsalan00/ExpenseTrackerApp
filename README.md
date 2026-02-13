@@ -111,6 +111,11 @@ ER diagram And Relationship between each entity:
 - There was issue in Query of MonthlyExpenses. We were using expense_date (full date) with year and month. Sql strictness has blocked us. we only have to make year(expense_date) and month(expense_date) only year and month of date with year and month in group by.
 - All apis are correctly fetching and calculating data.
 
+## Testing and Bug Fixing 4
+- Tested Date range filter api.
+- There was some typos which were fixed.
+- Api is working correctly and GlobalExceptionHandler is correctly handeling valid date format.
+
 ### Classes Explained:
 
 ### Entity Classes
