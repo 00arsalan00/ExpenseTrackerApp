@@ -1,6 +1,9 @@
 package com.app.controller;
 
+import java.time.LocalDate;
 import java.util.List;
+
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
@@ -45,6 +48,19 @@ public class ReportController {
 
         return ResponseEntity.ok(
                 reportService.getDashboard(userId)
-        );
+        );   
+    }
+    
+    @GetMapping("/reports/range")
+    public ResponseEntity<?> getRangeReport(
+    		@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate start,
+    		@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate end,
+    		Authentication authentication){
+    	
+    	String userId = authentication.getName();
+    	
+    	return ResponseEntity.ok(
+    			reportService.getExpensesByRange(start, end, userId)
+    			);
     }
 }

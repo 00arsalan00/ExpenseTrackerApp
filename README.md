@@ -80,6 +80,13 @@ ER diagram And Relationship between each entity:
 - Implementing Api end points to integerate tracking and reporting feature.
 - Implemented ReportController class with GetMapping-> monthly,category,dashboard
 
+## Day 13
+- Implementing Feature of Extracting Expense Between Date ranges.
+- Modified ExpenseRepository to add this feature.
+- Defined logic in ReportService to extract expense based date range.
+- Defined Api End point in ReportController 
+- Implemented InvalidDateRangeException class to handle if start date is after the end date and GolbalExceptionHandler handles Invalid Date Range.
+
 ## Testing and Bug Fixing 1
 - Tested all 3 apis.
 - A critical issue was identified in the authentication flow.
@@ -229,3 +236,6 @@ ER diagram And Relationship between each entity:
 
 - **ApiErrorResponse**
     Standardizes the structure of error responses returned to the client.
+
+- **InvalidDateRangeException**
+    Standardized the structure of error if start date comes after end date (Invalid date format).

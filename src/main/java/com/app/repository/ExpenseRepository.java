@@ -96,4 +96,14 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
         ORDER BY SUM(e.amount) DESC
     """)
     List<ExpenseCategory> getTopCategory(@Param("userId") String userId);
+    
+    // Filter by range
+    @Query("""
+    		SELECT e FROM Expense e
+    		WHERE e.expenseDate BETWEEN :start AND :end
+    		AND e.userId = :userId
+    		ORDER BY e.date DESC
+    		""")
+    List<Expense> getExpensesByRange(@Param("start") LocalDate start,
+    		@Param("end") LocalDate end,@Param("userId") String userId);
 }
