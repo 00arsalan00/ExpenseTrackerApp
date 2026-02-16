@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,7 @@ public class ReportService {
 		return expenseRepository.getCategoryReport(userId);
 	}
 	
+	@Cacheable(value = "dashboard", key = "#userId")
 	public DashboardDto getDashboard(String userId) {
 		BigDecimal total = expenseRepository.getTotalExpenses(userId);
 		BigDecimal thisMonth = expenseRepository.getMonthlyExpenses(userId);

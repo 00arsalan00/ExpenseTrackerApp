@@ -92,6 +92,16 @@ ER diagram And Relationship between each entity:
 - We are using the Apache Commons CSV dependency:
 org.apache.commons:commons-csv to generate and format the CSV file safely.
 
+## Day 15
+- Implementing Caching. Default Spring Caching is used.
+- @EnableCaching in main application class. This activates Spring’s cache abstraction.
+- In your ReportService use @Cacheable at getDashboard(). 
+- DB queried → result stored in cache. Returned directly from memory. No DB hit.
+- Whenever expense is created/updated/deleted: 
+- In ExpenseServiceImplementation @CacheEvict at createExpense()
+- In ExpenseServiceImplementation  @CacheEvict at deleteExpense()
+- In ExpenseUpdateServiceImplementation @CacheEvict at updateExpenses()
+
 ## Testing and Bug Fixing 1
 - Tested all 3 apis.
 - A critical issue was identified in the authentication flow.

@@ -4,6 +4,7 @@ import java.io.StringWriter;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,7 @@ public class ExpenseServiceImplementation implements ExpenseService {
 	
 	private final ExpenseRepository expenseRepository;
 	
+	@CacheEvict(value = "dashboard", key = "#userId")
 	@Override
 	public ExpenseResponseDto createExpense(String userId,ExpenseCreateRequestDto request) {
 		
@@ -79,7 +81,7 @@ public class ExpenseServiceImplementation implements ExpenseService {
 	            .map(this::mapToResponse);
 	}
 
-	
+	@CacheEvict(value = "dashboard",key = "#userId")
 	@Override
 	public void deleteExpense(String userId,Long expenseId) {
 		Expense expense = expenseRepository.findByIdAndUserId(expenseId, userId)

@@ -1,5 +1,6 @@
 package com.app.service;
 
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 
 import com.app.entity.Expense;
@@ -16,7 +17,8 @@ public class ExpenseUpdateServiceImplementation
         implements ExpenseUpdateService {
 
     private final ExpenseRepository expenseRepository;
-
+    
+    @CacheEvict(value = "dashboard",key = "#userId")
     @Override
     public ExpenseResponseDto updateExpenses(
             String userId,
