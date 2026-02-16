@@ -102,6 +102,18 @@ org.apache.commons:commons-csv to generate and format the CSV file safely.
 - In ExpenseServiceImplementation  @CacheEvict at deleteExpense()
 - In ExpenseUpdateServiceImplementation @CacheEvict at updateExpenses()
 
+## Day 16
+- Implementing Junit testing on ExpenseServiceImplementation. This class contains: Business rules, Date validation logic, Mapping logic, Delete validation, CSV export validation. This is the brain of our system.
+- Methods to be tested: 
+1: getAllExpenses(...): Because it contains Date validation logic, Throws custom exceptions, Critical filtering behavior. Test: from > to → exception, only one date → exception, valid dates → repository called. Type: Unit Test (Mockito).
+
+2: createExpense(...): Because it contains Core write operation, Maps DTO → Entity → DTO, Critical business operation.Test: Repository save is called, Returned DTO matches expected. Type: Unit Test (Mockito).
+
+3: deleteExpense(...): Because it validate ownership, Must throw if not found. Test: When expense exists → delete called, When not exists → exception thrown. Type: Unit Test.
+
+- Successfully tested all tests.
+
+
 ## Testing and Bug Fixing 1
 - Tested all 3 apis.
 - A critical issue was identified in the authentication flow.
