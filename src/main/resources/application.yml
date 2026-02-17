@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: expense-tracker
+
+server:
+  port: 3090
