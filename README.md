@@ -111,7 +111,15 @@ org.apache.commons:commons-csv to generate and format the CSV file safely.
 
 3: deleteExpense(...): Because it validate ownership, Must throw if not found. Test: When expense exists → delete called, When not exists → exception thrown. Type: Unit Test.
 
-- Successfully tested all tests.
+- All tests are passed successfully.
+
+## Day 17
+- Implemented ExpenseUpdateServiceImplementationTest. 
+- Implemented RepositoryTest. It Validates SQL queries, JPQL queries, Grouping, Aggregations, Filtering, Index behavior, Entity mapping, Column constraints.
+- @DataJpaTest is used. Starts only JPA layer.  It loads: Entity classes, Repository beans, Embedded H2 database. It does NOT load: Controllers, Services, Security, Full Spring Boot context. This is called a slice test.
+- Implemented Controller Integeration Test. This validates: URL mapping, Request parameter binding, Authentication extraction, Service call, Database access, JSON serialization, HTTP status codes, Global exception handling.
+- SpringBootTest & @AutoConfigureMockMvc is used. This loads the entire Spring Boot application. Not a slice. Full system.
+
 
 
 ## Testing and Bug Fixing 1
