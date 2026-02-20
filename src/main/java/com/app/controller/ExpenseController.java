@@ -2,6 +2,7 @@ package com.app.controller;
 
 import java.time.LocalDate;
 
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -19,9 +20,12 @@ import com.app.response.ExpenseResponseDto;
 import com.app.service.ExpenseService;
 import com.app.service.ExpenseUpdateService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
+@Tag(name = "Expense APIs", description = "CRUD operations for expenses")
 @RestController
 @RequestMapping("/api/expenses")
 @RequiredArgsConstructor
@@ -30,7 +34,11 @@ public class ExpenseController {
 
     private final ExpenseService expenseService;
     private final ExpenseUpdateService expenseUpdateService;
-
+    
+    @Operation(
+    	    summary = "Create Expense",
+    	    description = "Creates a new expense entry for authenticated user"
+    	)
     @PostMapping
     public ResponseEntity<ExpenseResponseDto> createExpense(
             @Valid @RequestBody ExpenseCreateRequestDto request,
@@ -62,7 +70,7 @@ public class ExpenseController {
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
             LocalDate to,
 
-            Pageable pageable,
+            @ParameterObject Pageable pageable,
             Authentication authentication
     ) {
     	String userId = authentication.getName();

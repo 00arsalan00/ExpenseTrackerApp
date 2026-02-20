@@ -53,7 +53,13 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/auth/v1/login",
                                 "/auth/v1/signup",
-                                "/auth/v1/refreshToken"
+                                "/auth/v1/refreshToken",
+
+                                //== Swagger ui ==
+                                "/v3/api-docs/**",
+                                "/swagger-ui/**",
+                                "/docs/**",
+                                "/api-docs/**"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
@@ -66,6 +72,7 @@ public class SecurityConfig {
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
 
                 .build();
+        
     }
 
     // ================= AUTHENTICATION PROVIDER =================
@@ -88,4 +95,6 @@ public class SecurityConfig {
 
         return config.getAuthenticationManager();
     }
+    
+    
 }

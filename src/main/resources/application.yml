@@ -4,3 +4,12 @@ spring:
 
 server:
   port: 3090
+
+springdoc:
+  swagger-ui:
+    path: /docs
+    operations-sorter: method
+    tags-sorter: alpha
+    doc-expansion: none
+  api-docs:
+    path: /api-docs

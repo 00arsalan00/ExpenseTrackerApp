@@ -120,7 +120,12 @@ org.apache.commons:commons-csv to generate and format the CSV file safely.
 - Implemented Controller Integeration Test. This validates: URL mapping, Request parameter binding, Authentication extraction, Service call, Database access, JSON serialization, HTTP status codes, Global exception handling.
 - SpringBootTest & @AutoConfigureMockMvc is used. This loads the entire Spring Boot application. Not a slice. Full system.
 
-
+## Day 19
+- Implemented Swagger UI. Swagger UI is a web-based interface generated from OpenAPI specifications that allows developers to visualize, explore, and test REST APIs directly from the browser without external tools like Postman.
+- API documentation is a structured contract that describes endpoints, request/response models, parameters, authentication mechanisms, and error formats — ensuring clear communication between backend and frontend or third-party consumers.
+- Why We Prefer Swagger: Eliminates manual documentation errors, Auto-generates documentation from code, Enables real-time API testing, Acts as a living API contract.
+- Added springdoc-openapi dependency, Customized Swagger UI path (/docs), Integrated JWT authentication with Bearer token support, Configured security to permit Swagger endpoints, Updated JWT filter to bypass Swagger routes properly, Fixed Pageable rendering using @ParameterObject, Structured API tags for clean grouping.
+- 
 
 ## Testing and Bug Fixing 1
 - Tested all 3 apis.

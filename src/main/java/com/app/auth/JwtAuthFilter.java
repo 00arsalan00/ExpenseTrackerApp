@@ -30,6 +30,20 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         this.userDetailsService = userDetailsService;
     }
 
+    /**
+     * Skip filtering for Swagger & OpenAPI endpoints
+     */
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+
+        String path = request.getRequestURI();
+
+        return path.startsWith("/v3/api-docs")
+                || path.startsWith("/swagger-ui")
+                || path.startsWith("/docs")
+                || path.startsWith("/api-docs");
+    }
+
     @Override
     protected void doFilterInternal(
             HttpServletRequest request,
@@ -53,14 +67,13 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             }
         }
 
-        // 2️⃣ Authenticate if not already authenticated
+        // 2️⃣ Authenticate if valid and not already authenticated
         if (username != null &&
-            SecurityContextHolder.getContext().getAuthentication() == null) {
+                SecurityContextHolder.getContext().getAuthentication() == null) {
 
             UserDetails userDetails =
                     userDetailsService.loadUserByUsername(username);
 
-            // 3️⃣ Validate token
             if (jwtService.validateToken(token, userDetails)) {
 
                 UsernamePasswordAuthenticationToken authToken =
@@ -78,7 +91,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             }
         }
 
-        // 4️⃣ Continue filter chain
+        // 3️⃣ Continue filter chain
         filterChain.doFilter(request, response);
     }
 }

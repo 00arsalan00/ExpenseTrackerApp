@@ -9,6 +9,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import com.app.model.*;
 import com.app.service.ReportService;
+
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -17,9 +19,11 @@ import lombok.RequiredArgsConstructor;
 public class ReportController {
 
     private final ReportService reportService;
-
+    
+    @Operation(summary = "Get monthly expenses")  
     @GetMapping("/monthly")
     public ResponseEntity<List<MonthlyReportDto>> monthly(
+    		
             Authentication authentication) {
 
         String userId = authentication.getName();

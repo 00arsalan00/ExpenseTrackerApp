@@ -15,8 +15,10 @@ import com.app.service.JwtService;
 import com.app.service.RefreshTokenService;
 import com.app.service.UserDetailsServiceImplementation;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 
+@Tag(name = "Authentication APIs", description = "User Authentication and token management")
 @RestController
 @AllArgsConstructor
 @RequestMapping("/auth/v1")
