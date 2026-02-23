@@ -1,7 +1,40 @@
 # Expanse Tracker App – Backend
 
 Project Description:
-This project focuses on building the backend of an Expense Tracker application using Spring Boot.
+Expense Tracker is a secure, stateless backend application built using Spring Boot.
+It provides JWT-based authentication, expense management, reporting features, caching, CSV export, and Dockerized deployment.
+
+This project demonstrates production-ready backend architecture with layered design, security, testing, and containerization.
+
+## Features:
+- Authentication & Security:- JWT-based stateless authentication, Access & Refresh token mechanism, Token rotation strategy, Role-ready security structure,Global exception handling, Secure endpoint protection.
+
+- Expense Management:- Create, update, delete expenses, Ownership validation (prevents data leaks), Pagination & sorting, Date range filtering.
+
+- Reporting & Analytics:- Monthly expense report, Category-wise report, Dashboard summary (total, average, top category), Cached dashboard results for performance.
+
+- Export:- CSV export of filtered expenses
+
+- Performance:- Spring Caching abstraction, Cache eviction on write operations.
+
+- Testing:- Unit Tests (Mockito), Repository Tests (@DataJpaTest), Integration Tests (SpringBootTest + MockMvc), Controller validation tests.
+
+- Deployment:- Multi-container Docker setup, MySQL container with persistent volume, Health checks, Profile-based configuration (dev / prod).
+
+## Architecture:
+Controller → Service → Repository
+                              ↘ DTO ↔ Mapper 
+                                      ↘ Entity
+
+## Tech Stack:
+Java 21, Spring Boot, Spring Security, Spring Data JPA, Hibernate, MySQL, H2 (testing), JUnit 5, Mockito, Docker, Springdoc OpenAPI (Swagger).
+
+## Run with Docker
+- Build and Start: [mvnw clean package]
+                   [docker compose up --build]
+
+## Access Swagger
+http://localhost:3090/swagger-ui/index.html
 
 
 ## Day 1:
@@ -125,7 +158,10 @@ org.apache.commons:commons-csv to generate and format the CSV file safely.
 - API documentation is a structured contract that describes endpoints, request/response models, parameters, authentication mechanisms, and error formats — ensuring clear communication between backend and frontend or third-party consumers.
 - Why We Prefer Swagger: Eliminates manual documentation errors, Auto-generates documentation from code, Enables real-time API testing, Acts as a living API contract.
 - Added springdoc-openapi dependency, Customized Swagger UI path (/docs), Integrated JWT authentication with Bearer token support, Configured security to permit Swagger endpoints, Updated JWT filter to bypass Swagger routes properly, Fixed Pageable rendering using @ParameterObject, Structured API tags for clean grouping.
-- 
+
+
+## Day 20
+- Dockerization
 
 ## Testing and Bug Fixing 1
 - Tested all 3 apis.

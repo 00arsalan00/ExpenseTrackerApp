@@ -45,36 +45,38 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        return http
-                .csrf(AbstractHttpConfigurer::disable)
-                .cors(AbstractHttpConfigurer::disable)
+        http
+            .csrf(AbstractHttpConfigurer::disable)
+            .cors(AbstractHttpConfigurer::disable)
 
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(
-                                "/auth/v1/login",
-                                "/auth/v1/signup",
-                                "/auth/v1/refreshToken",
+            .authorizeHttpRequests(auth -> auth
+                    .requestMatchers(
+                            "/docs/**",
+                            "/v3/api-docs/**",
+                            "/swagger-ui/**",
+                            "/swagger-ui.html",
+                            "/api-docs/**",
+                            "/actuator/**"
+                    ).permitAll()
 
-                                //== Swagger ui ==
-                                "/v3/api-docs/**",
-                                "/swagger-ui/**",
-                                "/docs/**",
-                                "/api-docs/**"
-                        ).permitAll()
-                        .anyRequest().authenticated()
-                )
+                    .requestMatchers(
+                            "/auth/v1/login",
+                            "/auth/v1/signup",
+                            "/auth/v1/refreshToken"
+                    ).permitAll()
 
-                .sessionManagement(sess ->
-                        sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                )
+                    .anyRequest().authenticated()
+            )
 
-                .authenticationProvider(authenticationProvider())
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+            .sessionManagement(sess ->
+                    sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            )
 
-                .build();
-        
+            .authenticationProvider(authenticationProvider())
+            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+
+        return http.build();
     }
-
     // ================= AUTHENTICATION PROVIDER =================
 
     @Bean
