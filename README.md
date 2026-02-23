@@ -162,6 +162,7 @@ org.apache.commons:commons-csv to generate and format the CSV file safely.
 
 ## Day 20
 - Dockerization
+- Cloud Deployment (Change DB from MySQL to PostgreSQL)
 
 ## Testing and Bug Fixing 1
 - Tested all 3 apis.

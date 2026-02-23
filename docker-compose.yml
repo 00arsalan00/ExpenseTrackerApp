@@ -27,4 +27,4 @@ services:
       SPRING_PROFILES_ACTIVE: prod
       DB_URL: jdbc:mysql://mysql:3306/expense_tracker
       DB_USERNAME: root
-      DB_PASSWORD: use_password
+      DB_PASSWORD: root
