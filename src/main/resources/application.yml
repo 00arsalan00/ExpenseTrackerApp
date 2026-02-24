@@ -1,6 +1,2 @@
-spring:
-  application:
-    name: expense-tracker
-
 server:
   port: ${PORT:8080}
